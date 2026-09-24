@@ -1,194 +1,525 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Zeus Mining - Sitio en construcción" />
-  <title>Zeus Mining | Sitio en construcción</title>
+  <title>Zeus Mining | Arriendo de equipos vulcanizadores, kits de empalme y aseo industrial</title>
+  <meta name="description" content="Zeus Mining: arriendo de equipos vulcanizadores certificados ALMEX y Bureau Veritas CESMEC, fabricación y venta de kits de empalme y polímeros, y aseo industrial para faenas mineras en Chile." />
+  <meta name="theme-color" content="#0d1117" />
+  <script>document.documentElement.classList.add("js");</script>
 
-  <style>
-    :root {
-      --gold: #dca700;
-      --gold-light: #f0c43c;
-      --dark: #05080c;
-      --panel: rgba(12, 18, 25, 0.82);
-      --text: #f4f7fa;
-      --muted: #aeb8c2;
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_CL" />
+  <meta property="og:title" content="Zeus Mining | Aseguramos la continuidad operativa" />
+  <meta property="og:description" content="Arriendo de equipos vulcanizadores, kits de empalme y polímeros, y aseo industrial para la minería." />
+  <meta property="og:image" content="assets/img/hero-cambio-correa.jpg" />
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=2" />
+
+  <script defer src="assets/js/main.js?v=2"></script>
+  <script defer id="lucide-js" src="https://unpkg.com/lucide@1.38.0/dist/umd/lucide.min.js" integrity="sha384-yi0Nt4uuEMu/6z2xkzY7OkOlSzF+Spi8SreFE+kyQGlSDSV56UXyFUP0SPMo/xvL" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Zeus Mining SpA",
+    "url": "https://zeusmin.cl",
+    "logo": "https://zeusmin.cl/logo.png",
+    "email": "cristobal.vega@zeusmin.cl",
+    "telephone": "+56998830615",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. La Dehesa 1201, oficina 432",
+      "addressLocality": "Lo Barnechea",
+      "addressRegion": "Región Metropolitana",
+      "addressCountry": "CL"
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--dark);
-      color: var(--text);
-    }
-
-    body {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      overflow-x: hidden;
-      position: relative;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(220, 167, 0, 0.13), transparent 34%),
-        radial-gradient(circle at 80% 75%, rgba(52, 72, 89, 0.22), transparent 38%),
-        linear-gradient(145deg, #020406 0%, #0a1017 52%, #020406 100%);
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.18;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 46px 46px;
-      mask-image: linear-gradient(to bottom, black, transparent 85%);
-    }
-
-    .container {
-      width: min(92%, 860px);
-      padding: 48px 28px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .card {
-      padding: clamp(34px, 6vw, 64px);
-      border: 1px solid rgba(220, 167, 0, 0.30);
-      border-radius: 24px;
-      background: var(--panel);
-      backdrop-filter: blur(12px);
-      box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.50),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
-    }
-
-    .logo {
-      display: block;
-      width: min(100%, 580px);
-      height: auto;
-      margin: 0 auto 34px;
-      filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.45));
-    }
-
-    .line {
-      width: 76px;
-      height: 4px;
-      margin: 0 auto 26px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      box-shadow: 0 0 18px rgba(220, 167, 0, 0.35);
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2rem, 5vw, 3.6rem);
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      text-transform: uppercase;
-    }
-
-    p {
-      margin: 18px auto 0;
-      max-width: 560px;
-      color: var(--muted);
-      font-size: clamp(1rem, 2.2vw, 1.2rem);
-      line-height: 1.65;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 32px;
-      padding: 11px 18px;
-      border: 1px solid rgba(220, 167, 0, 0.28);
-      border-radius: 999px;
-      color: #e7eef5;
-      background: rgba(220, 167, 0, 0.07);
-      font-size: 0.92rem;
-      letter-spacing: 0.04em;
-    }
-
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--gold-light);
-      box-shadow: 0 0 0 0 rgba(240, 196, 60, 0.65);
-      animation: pulse 1.8s infinite;
-    }
-
-    footer {
-      margin-top: 24px;
-      color: #687581;
-      font-size: 0.85rem;
-    }
-
-    @keyframes pulse {
-      70% {
-        box-shadow: 0 0 0 10px rgba(240, 196, 60, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(240, 196, 60, 0);
-      }
-    }
-
-    @media (max-width: 520px) {
-      .container {
-        width: 95%;
-        padding: 20px 10px;
-      }
-
-      .card {
-        border-radius: 18px;
-        padding: 32px 20px;
-      }
-
-      .logo {
-        margin-bottom: 26px;
-      }
-    }
-  </style>
+  }
+  </script>
 </head>
 
 <body>
-  <main class="container">
-    <section class="card">
-      <img src="logo.png" alt="Logo de Zeus Mining" class="logo" />
+  <!-- Íconos propios (WhatsApp no existe en Lucide) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-wa" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+    </symbol>
+  </svg>
 
-      <div class="line"></div>
+  <a class="skip" href="#main">Saltar al contenido</a>
 
-      <h1>Sitio en construcción</h1>
+  <!-- ============ HEADER ============ -->
+  <header class="hdr" id="top">
+    <div class="wrap hdr-inner">
+      <a class="hdr-logo" href="#top" aria-label="Zeus Mining, ir al inicio">
+        <img src="assets/logo-ondark.png" alt="Zeus Mining" width="596" height="353" />
+      </a>
 
-      <p>
-        Estamos preparando nuestro nuevo sitio web.
-        Muy pronto podrás conocer nuestros servicios y soluciones para la industria minera.
-      </p>
+      <nav class="nav" id="nav" aria-label="Principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#arriendo">Arriendo</a>
+        <a href="#kits">Kits de empalme</a>
+        <a href="#aseo">Aseo industrial</a>
+        <a href="#contacto">Contacto</a>
+        <a class="btn btn--gold nav-cta" data-wa="general" target="_blank" rel="noopener">
+          <svg class="ico-wa" aria-hidden="true"><use href="#i-wa"/></svg>
+          Cotizar por WhatsApp
+        </a>
+      </nav>
 
-      <div class="status">
-        <span class="dot"></span>
-        Próximamente en línea
+      <button class="nav-toggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero-grid-bg" aria-hidden="true"></div>
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Zeus Mining SpA · Servicios para la minería</p>
+          <h1 class="hero-title reveal" data-delay="1">Aseguramos la <span class="gold">continuidad operativa</span></h1>
+          <p class="hero-lead reveal" data-delay="2">
+            Arriendo de equipos vulcanizadores, fabricación y venta de kits de empalme y polímeros,
+            y aseo industrial para faenas mineras. Personal especialista para emergencias y trabajos planificados.
+          </p>
+          <div class="hero-actions reveal" data-delay="3">
+            <a class="btn btn--gold btn--lg" data-wa="general" target="_blank" rel="noopener">
+              <svg class="ico-wa" aria-hidden="true"><use href="#i-wa"/></svg>
+              Cotizar por WhatsApp
+            </a>
+            <a class="btn btn--ghost btn--lg" href="#servicios">Ver servicios <i data-lucide="arrow-down-right"></i></a>
+          </div>
+        </div>
+
+        <div class="hero-media reveal" data-delay="2">
+          <div class="hero-img">
+            <img src="assets/img/hero-cambio-correa.jpg" alt="Cambio de correa transportadora con enrollador y equipos Zeus Mining en faena" width="658" height="384" fetchpriority="high" />
+          </div>
+          <div class="hero-badge">
+            <span class="hero-badge-k">Equipos certificados</span>
+            <span class="hero-badge-v">ALMEX · Bureau Veritas CESMEC</span>
+            <span class="hero-badge-s">Vigente a marzo 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <ol class="hero-index reveal" data-delay="4" aria-label="Nuestros tres servicios">
+          <li><a href="#arriendo"><span class="hi-n">01</span><span class="hi-t">Arriendo de equipos vulcanizadores</span><i data-lucide="arrow-right"></i></a></li>
+          <li><a href="#kits"><span class="hi-n">02</span><span class="hi-t">Kits de empalme y polímeros</span><i data-lucide="arrow-right"></i></a></li>
+          <li><a href="#aseo"><span class="hi-n">03</span><span class="hi-t">Aseo industrial</span><i data-lucide="arrow-right"></i></a></li>
+        </ol>
       </div>
     </section>
 
-    <footer>
-      © <span id="year"></span> Zeus Mining. Todos los derechos reservados.
-    </footer>
+    <!-- ============ CIFRAS ============ -->
+    <section class="stats" aria-label="Zeus Mining en cifras">
+      <div class="wrap stats-grid">
+        <div class="stat reveal"><span class="stat-v">72″</span><span class="stat-k">Ancho máximo de correa con nuestros equipos</span></div>
+        <div class="stat reveal" data-delay="1"><span class="stat-v">15 m</span><span class="stat-k">Lineales de cobertura, con configuraciones para anchos superiores</span></div>
+        <div class="stat reveal" data-delay="2"><span class="stat-v">52</span><span class="stat-k">Colaboradores en dotación permanente</span></div>
+        <div class="stat reveal" data-delay="3"><span class="stat-v">Spot</span><span class="stat-k">Especialistas para emergencias y trabajos planificados</span></div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICIOS ============ -->
+    <section class="section section--paper" id="servicios">
+      <div class="wrap">
+        <div class="sec-hdr sec-hdr--split">
+          <div>
+            <p class="eyebrow eyebrow--dark reveal">Nuestros servicios</p>
+            <h2 class="h2 reveal" data-delay="1">Tres líneas de servicio.<br />Un mismo estándar minero.</h2>
+          </div>
+          <p class="lead reveal" data-delay="2">
+            Nos enfocamos en lo que mantiene tus correas y tus áreas operativas funcionando:
+            equipos para vulcanizar, insumos para empalmar y reparar, y aseo industrial que no detiene la faena.
+          </p>
+        </div>
+
+        <div class="svc-grid">
+          <article class="svc-card reveal">
+            <a class="svc-img svc-img--plate" href="#arriendo" tabindex="-1" aria-hidden="true">
+              <img src="assets/img/vulca-equipo-zeus.png" alt="" width="465" height="322" loading="lazy" />
+            </a>
+            <div class="svc-body">
+              <span class="svc-n">01</span>
+              <h3 class="svc-t">Arriendo de equipos vulcanizadores</h3>
+              <p class="svc-d">Prensas, platos, controles y rieles certificados para vulcanizar correas de hasta 72″ en faena, con soporte técnico durante todo el arriendo.</p>
+              <div class="svc-links">
+                <a href="#arriendo" class="link">Ver detalle <i data-lucide="arrow-right"></i></a>
+                <a data-wa="arriendo" target="_blank" rel="noopener" class="link link--muted">Cotizar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc-card reveal" data-delay="1">
+            <a class="svc-img" href="#kits" tabindex="-1" aria-hidden="true">
+              <img src="assets/img/kit-reparacion.jpg" alt="" width="800" height="600" loading="lazy" />
+            </a>
+            <div class="svc-body">
+              <span class="svc-n">02</span>
+              <h3 class="svc-t">Fabricación y venta de kits de empalme y polímeros</h3>
+              <p class="svc-d">Kits preparados según tu correa, con control de calidad y trazabilidad por lote hasta la entrega en faena.</p>
+              <div class="svc-links">
+                <a href="#kits" class="link">Ver detalle <i data-lucide="arrow-right"></i></a>
+                <a data-wa="kits" target="_blank" rel="noopener" class="link link--muted">Cotizar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc-card reveal" data-delay="2">
+            <a class="svc-img" href="#aseo" tabindex="-1" aria-hidden="true">
+              <img src="assets/img/aseo-limpieza-correas.jpg" alt="" width="442" height="315" loading="lazy" />
+            </a>
+            <div class="svc-body">
+              <span class="svc-n">03</span>
+              <h3 class="svc-t">Aseo industrial</h3>
+              <p class="svc-d">Limpieza industrial, gestión de residuos y soluciones sanitarias para faenas mineras, alineadas al DS 594.</p>
+              <div class="svc-links">
+                <a href="#aseo" class="link">Ver detalle <i data-lucide="arrow-right"></i></a>
+                <a data-wa="aseo" target="_blank" rel="noopener" class="link link--muted">Cotizar</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 01 · ARRIENDO ============ -->
+    <section class="section section--dark" id="arriendo">
+      <div class="wrap">
+        <div class="rent">
+          <div class="rent-media reveal">
+            <div class="rent-plate">
+              <img src="assets/img/arriendo-equipo-completo.jpg" alt="Equipo vulcanizador completo: prensa, control de temperatura y bomba" width="760" height="1013" loading="lazy" />
+            </div>
+            <div class="cert-tag">
+              <span class="cert-tag-k">Certificado</span>
+              <span class="cert-tag-v">ALMEX · Bureau Veritas CESMEC · Marzo 2026</span>
+            </div>
+          </div>
+
+          <div class="rent-copy">
+            <p class="eyebrow reveal"><span class="eyebrow-n">01</span> Arriendo</p>
+            <h2 class="h2 reveal" data-delay="1">Arriendo de equipos vulcanizadores</h2>
+            <p class="lead lead--dark reveal" data-delay="2">
+              Prensas y equipos para vulcanizar en faena correas de hasta 72″ y 15 m lineales,
+              con configuraciones para anchos superiores. Con el respaldo técnico de la Escuela de Vulca de Zeus Mining.
+            </p>
+            <ul class="checks reveal" data-delay="3">
+              <li><i data-lucide="check"></i>Certificación ALMEX y Bureau Veritas CESMEC vigente a marzo 2026</li>
+              <li><i data-lucide="check"></i>Soporte técnico y operacional durante todo el arriendo</li>
+              <li><i data-lucide="check"></i>Experiencia real en empalmes ST y EP en faenas mineras</li>
+              <li><i data-lucide="check"></i>Disponibilidad para trabajos planificados y emergencias</li>
+            </ul>
+            <div class="actions reveal" data-delay="4">
+              <a class="btn btn--gold btn--lg" data-wa="arriendo" target="_blank" rel="noopener">
+                <svg class="ico-wa" aria-hidden="true"><use href="#i-wa"/></svg>
+                Cotizar arriendo
+              </a>
+              <a class="btn btn--ghost btn--lg" href="#contacto" data-service="arriendo">Solicitar por formulario</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Catálogo -->
+        <div class="sub-hdr">
+          <h3 class="h3 reveal">Catálogo de arriendo</h3>
+          <p class="reveal" data-delay="1">Arrienda el equipo completo o solo el componente que necesitas.</p>
+        </div>
+
+        <div class="cat-grid">
+          <article class="cat-card reveal">
+            <div class="cat-img"><img src="assets/img/arriendo-platos.jpg" alt="Set de platos para vulcanización de correas transportadoras" width="900" height="720" loading="lazy" /></div>
+            <div class="cat-body">
+              <span class="tag">Vulcanizador</span>
+              <h4 class="cat-t">Platos para vulcanización</h4>
+              <p class="cat-d">Sets de platos en distintas medidas y configuraciones para empalme y reparación, con distribución térmica y de presión adecuada en terreno.</p>
+              <a class="link" data-wa="equipo" data-wa-item="Platos para vulcanización" target="_blank" rel="noopener">Cotizar este equipo <i data-lucide="arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="cat-card reveal" data-delay="1">
+            <div class="cat-img"><img src="assets/img/arriendo-controles.jpg" alt="Controles de temperatura y bombas hidráulicas ALMEX para equipos vulcanizadores" width="900" height="720" loading="lazy" /></div>
+            <div class="cat-body">
+              <span class="tag">Vulcanizador</span>
+              <h4 class="cat-t">Controles y bombas</h4>
+              <p class="cat-d">Controles y bombas hidráulicas ALMEX T4 y T6, con control preciso de presión y temperatura. Arriendo individual o como parte del equipo.</p>
+              <a class="link" data-wa="equipo" data-wa-item="Controles y bombas ALMEX T4 / T6" target="_blank" rel="noopener">Cotizar este equipo <i data-lucide="arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="cat-card reveal" data-delay="2">
+            <div class="cat-img"><img src="assets/img/arriendo-rieles.jpg" alt="Rieles para equipos vulcanizadores" width="900" height="720" loading="lazy" /></div>
+            <div class="cat-body">
+              <span class="tag">Vulcanizador</span>
+              <h4 class="cat-t">Rieles para equipos vulcanizadores</h4>
+              <p class="cat-d">Rieles con pernos, seguros hold y accesorios de fijación para alinear y sujetar el equipo durante el trabajo en faena.</p>
+              <a class="link" data-wa="equipo" data-wa-item="Rieles para equipos vulcanizadores" target="_blank" rel="noopener">Cotizar este equipo <i data-lucide="arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+
+        <!-- Qué incluye -->
+        <div class="rent-incl">
+          <figure class="rent-incl-img reveal">
+            <img src="assets/img/arriendo-logistica.jpg" alt="Camión pluma con equipos vulcanizadores listos para movilizarse a faena" width="800" height="450" loading="lazy" />
+            <figcaption>Movilización de equipos a faena</figcaption>
+          </figure>
+          <div>
+            <h3 class="h3 reveal">Qué incluye el arriendo</h3>
+            <div class="benefits">
+              <div class="benefit reveal"><i data-lucide="award"></i><h4>Certificación vigente</h4><p>Equipos respaldados por ALMEX y Bureau Veritas CESMEC.</p></div>
+              <div class="benefit reveal" data-delay="1"><i data-lucide="headset"></i><h4>Soporte técnico</h4><p>Acompañamiento operativo durante todo el periodo de arriendo.</p></div>
+              <div class="benefit reveal" data-delay="2"><i data-lucide="truck"></i><h4>Entrega y coordinación</h4><p>Logística coordinada con la faena y verificación antes del uso.</p></div>
+              <div class="benefit reveal" data-delay="3"><i data-lucide="file-check"></i><h4>Documentación</h4><p>Certificados, manuales y registros entregables al cliente.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 · KITS ============ -->
+    <section class="section section--paper" id="kits">
+      <div class="wrap">
+        <div class="kits">
+          <div class="kits-media reveal">
+            <img class="kits-main" src="assets/img/kit-empalme-st.jpg" alt="Técnicos preparando un empalme de correa con cable de acero (ST)" width="480" height="640" loading="lazy" />
+            <figure class="kits-inset">
+              <img src="assets/img/kit-trazabilidad.jpg" alt="Empalme terminado con número de registro para su trazabilidad" width="420" height="560" loading="lazy" />
+              <figcaption>Empalmes registrados y trazables</figcaption>
+            </figure>
+          </div>
+
+          <div class="kits-copy">
+            <p class="eyebrow eyebrow--dark reveal"><span class="eyebrow-n">02</span> Fabricación y venta</p>
+            <h2 class="h2 reveal" data-delay="1">Kits de empalme y polímeros</h2>
+            <p class="lead reveal" data-delay="2">
+              Fabricamos y suministramos kits para empalmar y reparar correas transportadoras textiles (EP)
+              y de cable de acero (ST). Cada kit se prepara según el ancho, el espesor y el compuesto de tu correa,
+              y llega a faena con su trazabilidad.
+            </p>
+
+            <h3 class="mini-t reveal">Qué puede incluir tu kit</h3>
+            <ul class="kit-list">
+              <li class="reveal"><i data-lucide="layers"></i><div><strong>Gomas de cubierta y cojín</strong><span>Compuestos para reconstruir cubiertas y unir capas en empalmes ST y EP.</span></div></li>
+              <li class="reveal" data-delay="1"><i data-lucide="flask-conical"></i><div><strong>Cementos vulcanizantes</strong><span>Para vulcanizado en caliente y reparaciones en frío.</span></div></li>
+              <li class="reveal" data-delay="2"><i data-lucide="shield-check"></i><div><strong>Polímeros de reparación y protección</strong><span>Para reparar daños y proteger zonas de desgaste de la correa.</span></div></li>
+              <li class="reveal" data-delay="3"><i data-lucide="wrench"></i><div><strong>Solventes y accesorios de preparación</strong><span>Limpieza y preparación de superficies antes del empalme.</span></div></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flow">
+          <h3 class="h3 h3--dark reveal">De la fabricación a tu faena</h3>
+          <ol class="flow-steps">
+            <li class="reveal"><span class="flow-n">01</span><h4>Fabricación</h4><p>Preparación del kit según la especificación de tu correa.</p></li>
+            <li class="reveal" data-delay="1"><span class="flow-n">02</span><h4>Control de calidad</h4><p>Verificación de insumos y documentación técnica.</p></li>
+            <li class="reveal" data-delay="2"><span class="flow-n">03</span><h4>Almacenaje</h4><p>Stock gestionado y resguardado para tus mantenciones.</p></li>
+            <li class="reveal" data-delay="3"><span class="flow-n">04</span><h4>Trazabilidad</h4><p>Registro por lote y dashboard de inventario de kits.</p></li>
+            <li class="reveal" data-delay="4"><span class="flow-n">05</span><h4>Entrega en faena</h4><p>Coordinación logística hasta el punto de trabajo.</p></li>
+          </ol>
+        </div>
+
+        <div class="callout reveal">
+          <i data-lucide="users"></i>
+          <p><strong>Asesoría técnica incluida.</strong> Te ayudamos a elegir los insumos adecuados según las especificaciones de tu operación.</p>
+          <div class="actions">
+            <a class="btn btn--gold" data-wa="kits" target="_blank" rel="noopener">
+              <svg class="ico-wa" aria-hidden="true"><use href="#i-wa"/></svg>
+              Cotizar kits
+            </a>
+            <a class="btn btn--outline" href="#contacto" data-service="kits">Solicitar por formulario</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 · ASEO INDUSTRIAL ============ -->
+    <section class="section section--graphite" id="aseo">
+      <div class="wrap">
+        <div class="sec-hdr sec-hdr--split">
+          <div>
+            <p class="eyebrow reveal"><span class="eyebrow-n">03</span> Aseo industrial</p>
+            <h2 class="h2 reveal" data-delay="1">Limpieza industrial y apoyo operacional</h2>
+            <p class="sub-gold reveal" data-delay="2">Servicio para faenas mineras</p>
+          </div>
+          <p class="lead lead--dark reveal" data-delay="2">
+            Mantenemos áreas productivas, instalaciones industriales y dependencias operacionales en condiciones
+            óptimas de orden, higiene, seguridad y disponibilidad, para que la operación minera no se detenga.
+          </p>
+        </div>
+
+        <div class="mosaic reveal">
+          <img class="mosaic-main" src="assets/img/aseo-limpieza-correas.jpg" alt="Operario con traje de protección limpiando material bajo una correa transportadora" width="442" height="315" loading="lazy" />
+          <img src="assets/img/aseo-detalle-1.jpg" alt="Limpieza con iluminación portátil en túnel de correas" width="181" height="269" loading="lazy" />
+          <img src="assets/img/aseo-detalle-2.jpg" alt="Retiro de material acumulado bajo la estructura de la correa" width="181" height="269" loading="lazy" />
+          <img src="assets/img/aseo-detalle-3.jpg" alt="Cuadrilla de aseo industrial trabajando en área de correas" width="181" height="269" loading="lazy" />
+        </div>
+
+        <div class="aseo-grid">
+          <div class="aseo-card reveal"><i data-lucide="spray-can"></i><h4>Limpieza industrial</h4><p>Aseo general e industrial en áreas productivas e instalaciones.</p></div>
+          <div class="aseo-card reveal" data-delay="1"><i data-lucide="recycle"></i><h4>Gestión de residuos</h4><p>Retiro y manejo de residuos según los procedimientos del mandante.</p></div>
+          <div class="aseo-card reveal" data-delay="2"><i data-lucide="hammer"></i><h4>Apoyo operacional</h4><p>Apoyo en mantenimiento básico de infraestructura y habilitación de espacios.</p></div>
+          <div class="aseo-card reveal"><i data-lucide="building-2"></i><h4>Control de áreas</h4><p>Atención de áreas comunes, baños, oficinas, talleres, bodegas, comedores y accesos.</p></div>
+          <div class="aseo-card reveal" data-delay="1"><i data-lucide="droplets"></i><h4>Soluciones sanitarias</h4><p>Baños químicos y modulares para faena, con instalación, traslado, limpieza permanente y reposición de insumos.</p></div>
+          <div class="aseo-card reveal" data-delay="2"><i data-lucide="hard-hat"></i><h4>Seguridad en la limpieza</h4><p>Protocolos de seguridad y EPP para todo el personal, registro de cada intervención y control de riesgos.</p></div>
+        </div>
+
+        <div class="norm reveal">
+          <div class="norm-mark"><span>DS</span>594</div>
+          <div>
+            <h3 class="h3">Alineados al DS 594</h3>
+            <p>Nuestro servicio se ajusta al Decreto Supremo 594, Reglamento sobre Condiciones Sanitarias y Ambientales Básicas en los Lugares de Trabajo, y a los estándares que fiscaliza la SEREMI de Salud, en cada unidad y en cada intervención.</p>
+          </div>
+        </div>
+
+        <div class="steps">
+          <h3 class="h3 reveal">Un proceso trazable de principio a fin</h3>
+          <ol class="steps-list">
+            <li class="reveal"><span>Paso 01</span><h4>Diagnóstico</h4><p>Levantamiento de necesidades y condiciones de la faena.</p></li>
+            <li class="reveal" data-delay="1"><span>Paso 02</span><h4>Propuesta</h4><p>Dimensionamiento, logística y plan de servicio.</p></li>
+            <li class="reveal" data-delay="2"><span>Paso 03</span><h4>Ejecución</h4><p>Limpieza, instalación y reposición según estándar.</p></li>
+            <li class="reveal" data-delay="3"><span>Paso 04</span><h4>Supervisión y reportes</h4><p>Control sanitario, trazabilidad y reportabilidad.</p></li>
+          </ol>
+        </div>
+
+        <div class="aseo-cta reveal">
+          <p>Contribuye a la prevención de riesgos y al cumplimiento de estándares de seguridad, calidad y medio ambiente.</p>
+          <div class="actions">
+            <a class="btn btn--gold btn--lg" data-wa="aseo" target="_blank" rel="noopener">
+              <svg class="ico-wa" aria-hidden="true"><use href="#i-wa"/></svg>
+              Solicitar visita técnica
+            </a>
+            <a class="btn btn--ghost btn--lg" href="#contacto" data-service="aseo">Solicitar por formulario</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="section section--paper" id="contacto">
+      <div class="wrap">
+        <div class="contact">
+          <aside class="contact-info reveal">
+            <p class="eyebrow">Contacto</p>
+            <h2 class="h2">Conversemos sobre tu faena</h2>
+            <p class="lead lead--dark">Escríbenos por WhatsApp para una respuesta rápida, o déjanos tus datos y te contactamos.</p>
+
+            <a class="wa-card" data-wa="general" target="_blank" rel="noopener">
+              <span class="wa-card-ico"><svg aria-hidden="true"><use href="#i-wa"/></svg></span>
+              <span class="wa-card-txt">
+                <span class="wa-card-k">WhatsApp · Cristóbal Vega</span>
+                <span class="wa-card-v">+56 9 9883 0615</span>
+              </span>
+              <i data-lucide="arrow-up-right"></i>
+            </a>
+
+            <ul class="contact-list">
+              <li><i data-lucide="mail"></i><a href="mailto:cristobal.vega@zeusmin.cl">cristobal.vega@zeusmin.cl</a></li>
+              <li><i data-lucide="phone"></i><a href="tel:+56998830615">+56 9 9883 0615</a></li>
+              <li><i data-lucide="map-pin"></i><span>Av. La Dehesa 1201, oficina 432<br />Lo Barnechea, Santiago</span></li>
+            </ul>
+          </aside>
+
+          <form class="form reveal" data-delay="1" id="contact-form" novalidate>
+            <h3 class="form-t">Solicita una cotización</h3>
+            <p class="form-s">Los campos con * son obligatorios.</p>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="f-nombre">Nombre *</label>
+                <input id="f-nombre" name="nombre" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="f-empresa">Empresa *</label>
+                <input id="f-empresa" name="empresa" type="text" autocomplete="organization" required />
+              </div>
+              <div class="field">
+                <label for="f-email">Correo *</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="f-telefono">Teléfono</label>
+                <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" placeholder="+56 9 ..." />
+              </div>
+              <div class="field">
+                <label for="f-servicio">Servicio *</label>
+                <select id="f-servicio" name="servicio" required>
+                  <option value="">Selecciona un servicio</option>
+                  <option value="arriendo">Arriendo de equipos vulcanizadores</option>
+                  <option value="kits">Kits de empalme y polímeros</option>
+                  <option value="aseo">Aseo industrial</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-faena">Faena o ubicación</label>
+                <input id="f-faena" name="faena" type="text" placeholder="Ej.: planta, región" />
+              </div>
+              <div class="field field--full">
+                <label for="f-mensaje">Mensaje *</label>
+                <textarea id="f-mensaje" name="mensaje" rows="5" required placeholder="Cuéntanos qué necesitas: equipo, ancho de correa, fechas, dotación…"></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn--dark btn--lg" type="submit">Enviar solicitud <i data-lucide="send"></i></button>
+              <button class="btn btn--outline btn--lg" type="button" id="form-wa">
+                <svg class="ico-wa" aria-hidden="true"><use href="#i-wa"/></svg>
+                Enviar por WhatsApp
+              </button>
+            </div>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <!-- ============ FOOTER ============ -->
+  <footer class="ftr">
+    <div class="wrap ftr-grid">
+      <div class="ftr-brand">
+        <img src="assets/logo-ondark.png" alt="Zeus Mining" width="596" height="353" loading="lazy" />
+        <p>Aseguramos la continuidad operativa. Contribuimos al desarrollo sostenible de las grandes industrias.</p>
+      </div>
+      <div>
+        <h4 class="ftr-h">Servicios</h4>
+        <ul>
+          <li><a href="#arriendo">Arriendo de equipos vulcanizadores</a></li>
+          <li><a href="#kits">Kits de empalme y polímeros</a></li>
+          <li><a href="#aseo">Aseo industrial</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="ftr-h">Contacto</h4>
+        <ul>
+          <li><a data-wa="general" target="_blank" rel="noopener">WhatsApp +56 9 9883 0615</a></li>
+          <li><a href="mailto:cristobal.vega@zeusmin.cl">cristobal.vega@zeusmin.cl</a></li>
+          <li>Av. La Dehesa 1201, of. 432, Lo Barnechea</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap ftr-bottom">
+      <span>© <span id="year"></span> Zeus Mining SpA · RUT 78.454.397-8</span>
+      <a href="#top">Volver arriba <i data-lucide="arrow-up"></i></a>
+    </div>
+  </footer>
+
+  <a class="wa-float" data-wa="general" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <svg aria-hidden="true"><use href="#i-wa"/></svg>
+  </a>
 </body>
 </html>
