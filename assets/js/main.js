@@ -246,7 +246,7 @@
       caja.className = 'cat-fallback';
       caja.innerHTML =
         '<i data-lucide="file-text" width="40" height="40"></i>' +
-        '<p>El catálogo son 17 páginas en PDF. Ábrelo en tu visor o descárgalo para verlo con calma.</p>' +
+        '<p>El catálogo tiene 17 páginas en PDF. Ábrelo en tu visor o descárgalo para verlo con calma.</p>' +
         '<a class="btn btn--gold" href="' + RUTA + '" target="_blank" rel="noopener">' +
         'Abrir el catálogo <i data-lucide="external-link"></i></a>';
       visor.appendChild(caja);
