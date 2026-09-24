@@ -101,11 +101,6 @@
           <div class="hero-img">
             <img src="assets/img/hero-cambio-correa.jpg" alt="Cambio de correa transportadora con enrollador y equipos Zeus Mining en faena" width="658" height="384" fetchpriority="high" />
           </div>
-          <div class="hero-badge">
-            <span class="hero-badge-k">Equipos certificados</span>
-            <span class="hero-badge-v">ALMEX · Bureau Veritas CESMEC</span>
-            <span class="hero-badge-s">Vigente a marzo 2026</span>
-          </div>
         </div>
       </div>
 
@@ -304,6 +299,12 @@
               Fabricamos y suministramos kits para empalmar y reparar correas transportadoras textiles (EP)
               y de cable de acero (ST). Cada kit se prepara según el ancho, el espesor y el compuesto de tu correa,
               y llega a faena con su trazabilidad.
+            </p>
+
+            <p class="reveal" data-delay="3">
+              <button type="button" class="btn btn--dark" id="ver-catalogo">
+                Ver nuestros productos <i data-lucide="book-open"></i>
+              </button>
             </p>
 
             <h3 class="mini-t reveal">Qué puede incluir tu kit</h3>
@@ -511,5 +512,33 @@
   <a class="wa-float" data-wa="general" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
     <svg aria-hidden="true"><use href="#i-wa"/></svg>
   </a>
+  <!-- ============ CATÁLOGO DE PRODUCTOS (PDF) ============ -->
+  <!-- <dialog> nativo y no un div: trae gratis el foco atrapado adentro, Esc para
+       cerrar y el fondo inerte. Hacer eso a mano son 60 líneas de JS que se
+       rompen en cuanto alguien navega con teclado. -->
+  <dialog class="cat" id="cat-modal" aria-labelledby="cat-title">
+    <div class="cat-head">
+      <div>
+        <p class="cat-k">Catálogo 2026</p>
+        <h2 class="cat-t" id="cat-title">Nuestros productos</h2>
+      </div>
+      <div class="cat-acts">
+        <a class="btn btn--gold" id="cat-download" href="assets/Cat_ZEUS_2026.pdf"
+           download="Catalogo-Zeus-Mining-2026.pdf">
+          Descargar <i data-lucide="download"></i>
+        </a>
+        <button type="button" class="cat-x" id="cat-close" aria-label="Cerrar el catálogo">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="cat-body">
+      <!-- El visor se inyecta desde JS (ver main.js) y no viene en el HTML: así el
+           PDF de 2 MB no se descarga hasta que alguien abre el modal. -->
+      <div class="cat-viewer" id="cat-viewer"></div>
+    </div>
+  </dialog>
+
 </body>
 </html>

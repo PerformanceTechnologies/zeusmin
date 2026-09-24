@@ -203,4 +203,72 @@
     window.open(waUrl(text), '_blank', 'noopener');
     setStatus('Abrimos WhatsApp con tu mensaje listo para enviar.', 'ok');
   });
+
+  // ---------- Catálogo de productos (PDF en modal) ----------
+  //
+  // El PDF pesa 2 MB. El visor se arma recién al abrir el modal y se desarma al
+  // cerrarlo, así que quien nunca lo abre no lo descarga, y quien lo cierra deja
+  // de tener un iframe vivo consumiendo memoria.
+  (function () {
+    var abrir = document.getElementById('ver-catalogo');
+    var modal = document.getElementById('cat-modal');
+    if (!abrir || !modal || typeof modal.showModal !== 'function') return;
+
+    var visor = document.getElementById('cat-viewer');
+    var cerrar = document.getElementById('cat-close');
+    var RUTA = 'assets/Cat_ZEUS_2026.pdf';
+
+    /**
+     * Si conviene intentar el visor embebido.
+     *
+     * iOS y la mayoria de los navegadores moviles NO renderizan un PDF dentro de
+     * un iframe: muestran un recuadro en blanco, o la primera pagina sin poder
+     * scrollear. Un recuadro vacio se lee como "esto esta roto", asi que ahi se
+     * muestra directamente el plan B, que ademas es lo que la gente hace en un
+     * telefono: abrirlo en el visor del sistema o descargarlo.
+     *
+     * Se mira el puntero y no el user agent: un user agent se falsea y ademas se
+     * desactualiza, y lo que importa aca es la clase de dispositivo.
+     */
+    function puedeIncrustar() {
+      return window.matchMedia('(min-width: 701px) and (pointer: fine)').matches;
+    }
+
+    function armarVisor() {
+      if (puedeIncrustar()) {
+        var iframe = document.createElement('iframe');
+        iframe.src = RUTA;
+        iframe.title = 'Catálogo de productos Zeus Mining 2026';
+        visor.appendChild(iframe);
+        return;
+      }
+      var caja = document.createElement('div');
+      caja.className = 'cat-fallback';
+      caja.innerHTML =
+        '<i data-lucide="file-text" width="40" height="40"></i>' +
+        '<p>El catálogo son 17 páginas en PDF. Ábrelo en tu visor o descárgalo para verlo con calma.</p>' +
+        '<a class="btn btn--gold" href="' + RUTA + '" target="_blank" rel="noopener">' +
+        'Abrir el catálogo <i data-lucide="external-link"></i></a>';
+      visor.appendChild(caja);
+      drawIcons();
+    }
+
+    abrir.addEventListener('click', function () {
+      if (!visor.firstChild) armarVisor();
+      modal.showModal();
+    });
+
+    cerrar.addEventListener('click', function () { modal.close(); });
+
+    // Clic en el fondo. El <dialog> recibe el evento del backdrop como si fuera
+    // suyo, asi que se compara el target: si es el propio dialog y no algo de
+    // adentro, el clic fue afuera.
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) modal.close();
+    });
+
+    // Al cerrar (boton, Esc o backdrop) se desmonta el visor: un iframe con un
+    // PDF sigue vivo aunque no se vea.
+    modal.addEventListener('close', function () { visor.innerHTML = ''; });
+  })();
 })();

@@ -233,16 +233,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%);
   filter: saturate(0.92) contrast(1.04);
 }
-.hero-badge {
-  position: absolute; right: 0; bottom: -28px; z-index: 1;
-  display: grid; gap: 2px; padding: 16px 20px; min-width: 250px;
-  background: rgba(13, 17, 23, 0.94); border: 1px solid var(--line-dark); border-top: 3px solid var(--gold);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-.hero-badge-k { font-family: var(--f-display); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--steel-2); }
-.hero-badge-v { font-family: var(--f-display); font-weight: 700; font-size: 1.2rem; letter-spacing: 0.04em; text-transform: uppercase; }
-.hero-badge-s { font-size: 0.9rem; color: var(--gold-hi); }
-
 .hero-index {
   position: relative; margin-top: clamp(56px, 7vw, 88px);
   display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-dark);
@@ -601,7 +591,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .hero-title { font-size: clamp(2.7rem, 12vw, 3.6rem); }
   .hero-actions .btn, .actions .btn, .form-actions .btn { width: 100%; }
   .hero-img::before { transform: translateX(-10px); }
-  .hero-badge { position: relative; right: auto; bottom: auto; margin-top: 16px; min-width: 0; }
 
   .svc-grid, .cat-grid, .aseo-grid, .benefits, .kit-list, .steps-list, .form-grid, .ftr-grid { grid-template-columns: 1fr; }
   .flow-steps { grid-template-columns: 1fr 1fr; }
@@ -611,4 +600,68 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .callout { grid-template-columns: 1fr; padding: 24px; }
   .contact-wa { align-self: stretch; }
   .wa-float { width: 54px; height: 54px; right: 16px; bottom: 16px; }
+}
+
+/* =========================================================
+   Catálogo de productos (PDF en modal)
+   ========================================================= */
+
+/* El <dialog> trae estilos propios del navegador (borde, padding, ancho
+   auto): se resetean acá, incluido el ::backdrop, que por omisión es un
+   gris translúcido que no pega con el resto del sitio. */
+.cat {
+  width: min(1100px, 94vw); max-width: none;
+  height: min(88vh, 900px);
+  padding: 0; border: 1px solid var(--line-dark); border-top: 3px solid var(--gold);
+  background: var(--ink-2); color: var(--white);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+.cat::backdrop { background: rgba(5, 8, 11, 0.8); }
+.cat[open] { display: flex; flex-direction: column; }
+
+.cat-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 16px 20px; border-bottom: 1px solid var(--line-dark); flex: 0 0 auto;
+}
+.cat-k {
+  font-family: var(--f-display); font-size: 0.72rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--steel-2); margin: 0;
+}
+.cat-t {
+  font-family: var(--f-display); font-weight: 700; font-size: 1.25rem;
+  letter-spacing: 0.02em; text-transform: uppercase; margin: 2px 0 0;
+}
+.cat-acts { display: flex; align-items: center; gap: 10px; }
+.cat-x {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 42px; height: 42px; flex: 0 0 auto;
+  background: transparent; border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--fog); cursor: pointer; transition: border-color .15s, color .15s;
+}
+.cat-x:hover { border-color: var(--gold-hi); color: var(--gold-hi); }
+
+/* flex:1 + min-height:0 para que el visor ocupe lo que sobra y scrollee
+   adentro: sin el min-height, un hijo en flex no baja de su tamaño natural y
+   el iframe empuja el modal fuera de la pantalla. */
+.cat-body { flex: 1 1 auto; min-height: 0; display: flex; }
+.cat-viewer { flex: 1 1 auto; min-height: 0; background: var(--ink); }
+.cat-viewer iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+/* El plan B para móvil (ver main.js): ahí el visor embebido no funciona y esto
+   es lo que se muestra en su lugar. */
+.cat-fallback {
+  display: grid; place-content: center; justify-items: center; gap: 14px;
+  height: 100%; padding: 32px 24px; text-align: center;
+}
+.cat-fallback i { color: var(--gold); }
+.cat-fallback p { color: var(--fog); max-width: 42ch; margin: 0; }
+.cat-fallback .btn { margin-top: 4px; }
+
+@media (max-width: 700px) {
+  .cat { width: 100vw; height: 100dvh; max-height: none; border: 0; border-top: 3px solid var(--gold); }
+  .cat-head { padding: 14px 16px; }
+  .cat-t { font-size: 1.05rem; }
+  /* El texto del botón de descarga se va y queda solo el ícono: con el título
+     al lado, tres elementos de ancho completo no entran en un teléfono. */
+  .cat-acts .btn { padding: 0 14px; }
 }
