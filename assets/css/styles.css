@@ -493,6 +493,26 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .wa-float:hover { transform: scale(1.06); }
 .wa-float svg { width: 30px; height: 30px; }
 
+/* Volver arriba: apilado SOBRE el de WhatsApp, no al lado. En un teléfono dos
+   botones en fila se comen el ancho y el pulgar acierta el equivocado; en
+   columna cada uno mantiene su área de toque. El 58 + 12 del bottom es el alto
+   del de WhatsApp más la separación, así que los dos se mueven juntos. */
+.up-float {
+  position: fixed; right: 20px; bottom: calc(20px + 58px + 12px); z-index: 40;
+  display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+  background: var(--ink-2); color: var(--gold-hi);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  /* Oculto de verdad: sin visibility/pointer-events seguiría recibiendo clics
+     invisible arriba del de WhatsApp. */
+  opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(8px);
+  transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
+}
+.up-float.is-on { opacity: 1; visibility: visible; pointer-events: auto; transform: none; }
+.up-float:hover { background: var(--slate); border-color: var(--gold-hi); }
+.up-float .lucide { width: 22px; height: 22px; }
+
 /* ---------- Animación de entrada ---------- */
 .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
 .js .reveal.is-in { opacity: 1; transform: none; }
@@ -587,6 +607,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .callout { grid-template-columns: 1fr; padding: 24px; }
   .contact-wa { align-self: stretch; }
   .wa-float { width: 54px; height: 54px; right: 16px; bottom: 16px; }
+  /* Sigue al de WhatsApp: 54 de alto + 10 de separación. */
+  .up-float { width: 44px; height: 44px; right: 16px; bottom: calc(16px + 54px + 10px); }
+  .up-float .lucide { width: 20px; height: 20px; }
 }
 
 /* =========================================================

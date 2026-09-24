@@ -20,9 +20,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=4" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=5" />
 
-  <script defer src="assets/js/main.js?v=3"></script>
+  <script defer src="assets/js/main.js?v=4"></script>
   <script defer id="lucide-js" src="https://unpkg.com/lucide@1.38.0/dist/umd/lucide.min.js" integrity="sha384-yi0Nt4uuEMu/6z2xkzY7OkOlSzF+Spi8SreFE+kyQGlSDSV56UXyFUP0SPMo/xvL" crossorigin="anonymous"></script>
 
   <script type="application/ld+json">
@@ -502,6 +502,14 @@
   <a class="wa-float" data-wa="general" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
     <svg aria-hidden="true"><use href="#i-wa"/></svg>
   </a>
+
+  <!-- Volver arriba. Es un <button> y no un <a href="#top">: el enlace queda en el
+       historial y deja el botón "atrás" del navegador devolviendo a la mitad de la
+       página en vez de al sitio anterior. Arranca oculto (sin "is-on") y el JS lo
+       muestra al bajar. -->
+  <button class="up-float" type="button" id="up-float" aria-label="Volver arriba">
+    <i data-lucide="arrow-up"></i>
+  </button>
   <!-- ============ CATÁLOGO DE PRODUCTOS (PDF) ============ -->
   <!-- <dialog> nativo y no un div: trae gratis el foco atrapado adentro, Esc para
        cerrar y el fondo inerte. Hacer eso a mano son 60 líneas de JS que se

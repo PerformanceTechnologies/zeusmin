@@ -271,4 +271,47 @@
     // PDF sigue vivo aunque no se vea.
     modal.addEventListener('close', function () { visor.innerHTML = ''; });
   })();
+
+  // ---------- Volver arriba ----------
+  (function () {
+    var boton = document.getElementById('up-float');
+    if (!boton) return;
+
+    // Aparece pasada una pantalla: antes de eso el encabezado sigue a la vista y
+    // el botón no resuelve nada, solo tapa contenido.
+    function alScroll() {
+      boton.classList.toggle('is-on', window.scrollY > window.innerHeight * 0.9);
+    }
+
+    // passive: true porque este listener nunca llama preventDefault, y decirselo
+    // al navegador le deja hacer el scroll sin esperar a que el handler termine.
+    window.addEventListener('scroll', alScroll, { passive: true });
+    alScroll(); // por si se entra con la página ya scrolleada (recarga, ancla)
+
+    boton.addEventListener('click', function () {
+      // 'smooth' explicito y no un href="#top": el enlace deja una entrada en el
+      // historial y el boton "atras" del navegador termina devolviendo a la mitad
+      // de la pagina en vez de al sitio anterior.
+      //
+      // Se respeta prefers-reduced-motion igual que el resto del sitio (el CSS ya
+      // apaga el scroll-behavior suave ahi): con la animacion desactivada, un
+      // salto largo marea a quien la tiene puesta justamente por eso.
+      // El foco va PRIMERO y el scroll despues, porque mover el foco puede
+      // cancelar un scroll suave ya en curso. Con este orden no hay nada que
+      // cancelar.
+      //
+      // El foco vuelve al principio del documento porque sin esto quien navega
+      // con teclado sigue parado donde estaba, y el siguiente Tab lo manda de
+      // vuelta al pie. preventScroll evita que el propio focus salte de golpe,
+      // que es justo lo que le sacaria el efecto al scroll suave de abajo.
+      var inicio = document.getElementById('top');
+      if (inicio) {
+        inicio.setAttribute('tabindex', '-1');
+        inicio.focus({ preventScroll: true });
+      }
+
+      var suave = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: suave ? 'smooth' : 'auto' });
+    });
+  })();
 })();
