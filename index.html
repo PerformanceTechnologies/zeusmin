@@ -20,9 +20,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=5" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=6" />
 
-  <script defer src="assets/js/main.js?v=4"></script>
+  <script defer src="assets/js/main.js?v=5"></script>
   <script defer id="lucide-js" src="https://unpkg.com/lucide@1.38.0/dist/umd/lucide.min.js" integrity="sha384-yi0Nt4uuEMu/6z2xkzY7OkOlSzF+Spi8SreFE+kyQGlSDSV56UXyFUP0SPMo/xvL" crossorigin="anonymous"></script>
 
   <script type="application/ld+json">
@@ -73,6 +73,11 @@
         <span></span><span></span><span></span>
       </button>
     </div>
+
+    <!-- Cuánto llevas leído. aria-hidden porque es información puramente visual:
+         quien usa lector de pantalla ya sabe dónde está por los encabezados, y
+         anunciar un porcentaje que cambia con cada scroll sería ruido. -->
+    <div class="hdr-progress" aria-hidden="true"><span id="progreso"></span></div>
   </header>
 
   <main id="main">

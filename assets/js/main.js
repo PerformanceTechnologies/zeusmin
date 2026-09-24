@@ -272,6 +272,91 @@
     modal.addEventListener('close', function () { visor.innerHTML = ''; });
   })();
 
+
+  // ---------- Un solo manejador de scroll ----------
+  //
+  // Todo lo que reacciona al scroll —el botón de volver arriba, la barra de
+  // lectura y la sección activa del menú— se suscribe acá. Con un listener por
+  // efecto, los tres corren en el mismo cuadro peleándose los milisegundos, y
+  // cada uno que lea getBoundingClientRect obliga al navegador a recalcular el
+  // layout otra vez.
+  //
+  // requestAnimationFrame: el navegador dispara scroll muchas más veces por
+  // segundo de las que puede pintar. Sin esto se hace trabajo que nadie ve.
+  var suscritos = [];
+  var pendiente = false;
+
+  function correrSuscritos() {
+    pendiente = false;
+    for (var i = 0; i < suscritos.length; i++) suscritos[i]();
+  }
+
+  function alBajar(fn) {
+    suscritos.push(fn);
+    fn(); // estado inicial: puede entrarse con la página ya scrolleada
+  }
+
+  // passive: true porque ninguno de estos llama preventDefault, y decírselo al
+  // navegador le deja hacer el scroll sin esperar a que terminen.
+  window.addEventListener('scroll', function () {
+    if (pendiente) return;
+    pendiente = true;
+    requestAnimationFrame(correrSuscritos);
+  }, { passive: true });
+
+  window.addEventListener('resize', correrSuscritos);
+
+  // ---------- Barra de lectura ----------
+  (function () {
+    var barra = document.getElementById('progreso');
+    if (!barra) return;
+    alBajar(function () {
+      var recorrible = document.documentElement.scrollHeight - window.innerHeight;
+      // Una página más corta que la ventana no tiene recorrido: sin la guarda,
+      // la división daría Infinity y la barra quedaría llena de entrada.
+      var avance = recorrible > 0 ? Math.min(1, window.scrollY / recorrible) : 0;
+      barra.style.transform = 'scaleX(' + avance + ')';
+    });
+  })();
+
+  // ---------- Sección actual en el menú ----------
+  (function () {
+    var hdrEl = document.querySelector('.hdr');
+    var pares = [];
+    document.querySelectorAll('.nav > a[href^="#"]:not(.btn)').forEach(function (a) {
+      var sec = document.getElementById(a.getAttribute('href').slice(1));
+      if (sec) pares.push({ enlace: a, seccion: sec });
+    });
+    if (pares.length === 0) return;
+
+    alBajar(function () {
+      // La ÚLTIMA sección cuyo borde superior ya pasó por debajo del encabezado.
+      // Se recorre entero en vez de cortar en la primera que cruza: así no hay
+      // huecos entre secciones donde ninguna quede marcada.
+      var limite = (hdrEl ? hdrEl.offsetHeight : 76) + 12;
+      var actual = null;
+      for (var i = 0; i < pares.length; i++) {
+        if (pares[i].seccion.getBoundingClientRect().top <= limite) actual = pares[i];
+      }
+
+      // Al fondo del todo gana la última, siempre. La sección de contacto es más
+      // baja que la ventana, así que su borde superior nunca llega a cruzar el
+      // límite y sin esto el menú se quedaría marcando la anterior.
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        actual = pares[pares.length - 1];
+      }
+
+      for (var j = 0; j < pares.length; j++) {
+        var esta = pares[j] === actual;
+        pares[j].enlace.classList.toggle('is-active', esta);
+        // aria-current le dice a un lector de pantalla cuál es la sección en la
+        // que se está, que es la misma información que el subrayado da a la vista.
+        if (esta) pares[j].enlace.setAttribute('aria-current', 'true');
+        else pares[j].enlace.removeAttribute('aria-current');
+      }
+    });
+  })();
+
   // ---------- Volver arriba ----------
   (function () {
     var boton = document.getElementById('up-float');
@@ -283,10 +368,9 @@
       boton.classList.toggle('is-on', window.scrollY > window.innerHeight * 0.9);
     }
 
-    // passive: true porque este listener nunca llama preventDefault, y decirselo
-    // al navegador le deja hacer el scroll sin esperar a que el handler termine.
-    window.addEventListener('scroll', alScroll, { passive: true });
-    alScroll(); // por si se entra con la página ya scrolleada (recarga, ancla)
+    // Se cuelga del manejador unificado de abajo en vez de poner su propio
+    // listener: tres listeners de scroll separados compiten por el mismo cuadro.
+    alBajar(alScroll);
 
     boton.addEventListener('click', function () {
       // 'smooth' explicito y no un href="#top": el enlace deja una entrada en el

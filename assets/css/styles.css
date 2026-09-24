@@ -178,6 +178,25 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .nav > a:not(.btn):hover { color: var(--white); }
 .nav > a:not(.btn):hover::after { transform: scaleX(1); }
+
+/* Sección actual: el mismo subrayado dorado del hover, pero fijo. Se reusa a
+   propósito — si la marca de "dónde estoy" fuera otra cosa, habría dos lenguajes
+   distintos para la misma barra. */
+.nav > a:not(.btn).is-active { color: var(--white); }
+.nav > a:not(.btn).is-active::after { transform: scaleX(1); }
+
+/* Barra de lectura, pegada al borde inferior del encabezado. */
+.hdr-progress {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: rgba(255, 255, 255, 0.07);
+}
+.hdr-progress span {
+  display: block; height: 100%; width: 100%;
+  background: var(--gold);
+  /* scaleX y no width: transform no obliga al navegador a recalcular el layout
+     en cada cuadro del scroll, que es exactamente donde no hay tiempo. */
+  transform: scaleX(0); transform-origin: left;
+}
 .nav-cta { min-height: 42px; }
 
 .nav-toggle {
