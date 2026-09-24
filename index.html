@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css?v=6" />
 
-  <script defer src="assets/js/main.js?v=5"></script>
+  <script defer src="assets/js/main.js?v=6"></script>
   <script defer id="lucide-js" src="https://unpkg.com/lucide@1.38.0/dist/umd/lucide.min.js" integrity="sha384-yi0Nt4uuEMu/6z2xkzY7OkOlSzF+Spi8SreFE+kyQGlSDSV56UXyFUP0SPMo/xvL" crossorigin="anonymous"></script>
 
   <script type="application/ld+json">
@@ -32,7 +32,6 @@
     "name": "Zeus Mining SpA",
     "url": "https://zeusmin.cl",
     "logo": "https://zeusmin.cl/logo.png",
-    "email": "contacto@zeusmin.cl",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Av. La Dehesa 1201, oficina 432",
@@ -406,7 +405,7 @@
           <aside class="contact-info reveal">
             <p class="eyebrow">Contacto</p>
             <h2 class="h2">Conversemos sobre tu faena</h2>
-            <p class="lead lead--dark">Escríbenos por WhatsApp para una respuesta rápida, o déjanos tus datos y te contactamos.</p>
+            <p class="lead lead--dark">Escríbenos por WhatsApp para una respuesta rápida, o completa el formulario y te abriremos WhatsApp con tu solicitud lista para enviar.</p>
 
             <a class="btn btn--wa btn--lg contact-wa" data-wa="general" target="_blank" rel="noopener">
               <svg class="ico-wa" aria-hidden="true"><use href="#i-wa"/></svg>
@@ -414,7 +413,6 @@
             </a>
 
             <ul class="contact-list">
-              <li><i data-lucide="mail"></i><a href="mailto:contacto@zeusmin.cl">contacto@zeusmin.cl</a></li>
               <li><i data-lucide="map-pin"></i><span>Av. La Dehesa 1201, oficina 432<br />Lo Barnechea, Santiago</span></li>
             </ul>
           </aside>
@@ -433,8 +431,8 @@
                 <input id="f-empresa" name="empresa" type="text" autocomplete="organization" required />
               </div>
               <div class="field">
-                <label for="f-email">Correo *</label>
-                <input id="f-email" name="email" type="email" autocomplete="email" required />
+                <label for="f-email">Correo</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" />
               </div>
               <div class="field">
                 <label for="f-telefono">Teléfono</label>
@@ -461,8 +459,7 @@
             </div>
 
             <div class="form-actions">
-              <button class="btn btn--dark btn--lg" type="submit">Enviar solicitud <i data-lucide="send"></i></button>
-              <button class="btn btn--outline btn--lg" type="button" id="form-wa">
+              <button class="btn btn--wa btn--lg" type="submit">
                 <svg class="ico-wa" aria-hidden="true"><use href="#i-wa"/></svg>
                 Enviar por WhatsApp
               </button>
@@ -493,7 +490,6 @@
         <h4 class="ftr-h">Contacto</h4>
         <ul>
           <li><a data-wa="general" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></li>
-          <li><a href="mailto:contacto@zeusmin.cl">contacto@zeusmin.cl</a></li>
           <li>Av. La Dehesa 1201, of. 432, Lo Barnechea</li>
         </ul>
       </div>

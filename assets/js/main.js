@@ -4,11 +4,7 @@
 
   // ---------- Configuración ----------
   var ZEUS = {
-    whatsapp: '56998830615',               // WhatsApp comercial (no se muestra en la página)
-    email: 'contacto@zeusmin.cl',
-    // Si se configura un endpoint (Formspree, función de Supabase, etc.), el formulario
-    // envía un POST JSON ahí. Vacío = abre el cliente de correo con la solicitud armada.
-    formEndpoint: ''
+    whatsapp: '56998830615' // WhatsApp comercial (no se muestra en la página)
   };
 
   var WA_MSG = {
@@ -151,9 +147,9 @@
   function summary(d) {
     var lines = [
       'Nombre: ' + d.nombre,
-      'Empresa: ' + d.empresa,
-      'Correo: ' + d.email
+      'Empresa: ' + d.empresa
     ];
+    if (d.email) lines.push('Correo: ' + d.email);
     if (d.telefono) lines.push('Teléfono: ' + d.telefono);
     lines.push('Servicio: ' + d.servicioLabel);
     if (d.faena) lines.push('Faena / ubicación: ' + d.faena);
@@ -163,45 +159,17 @@
 
   var ALL = ['nombre', 'empresa', 'email', 'telefono', 'servicio', 'faena', 'mensaje'];
 
+  // El formulario arma la solicitud y la envía por WhatsApp (sin correo por ahora)
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!validate(ALL)) { setStatus('Revisa los campos marcados.', 'err'); return; }
-    var d = readForm();
-
-    if (ZEUS.formEndpoint) {
-      var btn = form.querySelector('[type="submit"]');
-      btn.disabled = true;
-      setStatus('Enviando…');
-      fetch(ZEUS.formEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(d)
-      }).then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        form.reset();
-        setStatus('¡Gracias! Recibimos tu solicitud y te contactaremos a la brevedad.', 'ok');
-      }).catch(function () {
-        setStatus('No pudimos enviar la solicitud. Escríbenos por WhatsApp o a ' + ZEUS.email + '.', 'err');
-      }).then(function () { btn.disabled = false; });
-      return;
-    }
-
-    var subject = 'Solicitud web · ' + d.servicioLabel + ' · ' + d.empresa;
-    window.location.href = 'mailto:' + ZEUS.email +
-      '?subject=' + encodeURIComponent(subject) +
-      '&body=' + encodeURIComponent(summary(d));
-    setStatus('Abrimos tu correo con la solicitud lista. Solo falta que presiones enviar.', 'ok');
-  });
-
-  document.getElementById('form-wa').addEventListener('click', function () {
-    if (!validate(['nombre', 'servicio', 'mensaje'])) { setStatus('Completa nombre, servicio y mensaje para enviarlo por WhatsApp.', 'err'); return; }
     var d = readForm();
     var text = 'Hola Zeus Mining, les escribo desde la web.\n\n' + summary(d)
       .split('\n')
       .filter(function (l) { return !/: $/.test(l); }) // quita campos opcionales vacíos
       .join('\n');
     window.open(waUrl(text), '_blank', 'noopener');
-    setStatus('Abrimos WhatsApp con tu mensaje listo para enviar.', 'ok');
+    setStatus('Abrimos WhatsApp con tu solicitud lista. Solo falta que presiones enviar.', 'ok');
   });
 
   // ---------- Catálogo de productos (PDF en modal) ----------
