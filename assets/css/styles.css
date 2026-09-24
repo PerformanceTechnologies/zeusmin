@@ -380,6 +380,18 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .kit-list strong { display: block; font-family: var(--f-display); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.03em; text-transform: uppercase; line-height: 1.15; }
 .kit-list span { display: block; margin-top: 4px; font-size: 0.95rem; color: var(--text-2); line-height: 1.5; }
 
+/* Franja de catálogo: continúa la grilla del kit, en oscuro para destacar */
+.kit-cat {
+  display: flex; align-items: center; gap: 16px; padding: 18px 20px;
+  background: var(--ink); color: var(--white); border: 1px solid var(--ink); border-top: 0;
+}
+.kit-cat > .lucide { width: 26px; height: 26px; color: var(--gold-hi); }
+.kit-cat-txt { flex: 1; display: grid; }
+.kit-cat-txt strong { font-family: var(--f-display); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.kit-cat-txt span { font-size: 0.95rem; color: var(--steel-2); }
+.kit-cat .btn { background: var(--gold); color: var(--ink); }
+.kit-cat .btn:hover { background: var(--gold-hi); }
+
 .flow { margin-top: clamp(72px, 9vw, 112px); }
 .flow-steps { margin-top: 36px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; position: relative; }
 .flow-steps::before {
@@ -595,7 +607,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .rent, .rent-incl, .kits, .contact { grid-template-columns: 1fr; }
   .rent-media { max-width: 520px; }
   .kits-media { max-width: 520px; }
-  .aseo-grid { grid-template-columns: 1fr 1fr; }
   .steps-list { grid-template-columns: 1fr 1fr; row-gap: 32px; }
   .callout { grid-template-columns: auto 1fr; }
   .callout .actions { grid-column: 1 / -1; }
@@ -614,6 +625,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (max-width: 640px) {
   body { font-size: 16px; }
   .eyebrow { font-size: 13px; letter-spacing: 0.12em; }
+  .kit-cat { flex-wrap: wrap; }
+  .kit-cat .btn { width: 100%; }
   .hero-title { font-size: clamp(2.7rem, 12vw, 3.6rem); }
   .hero-actions .btn, .actions .btn, .form-actions .btn { width: 100%; }
   .hero-img::before { transform: translateX(-10px); }
