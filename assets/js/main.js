@@ -4,8 +4,8 @@
 
   // ---------- Configuración ----------
   var ZEUS = {
-    whatsapp: '56998830615',               // Cristóbal Vega
-    email: 'cristobal.vega@zeusmin.cl',
+    whatsapp: '56998830615',               // WhatsApp comercial (no se muestra en la página)
+    email: 'contacto@zeusmin.cl',
     // Si se configura un endpoint (Formspree, función de Supabase, etc.), el formulario
     // envía un POST JSON ahí. Vacío = abre el cliente de correo con la solicitud armada.
     formEndpoint: ''

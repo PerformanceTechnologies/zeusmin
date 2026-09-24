@@ -136,6 +136,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn--dark:hover { background: var(--slate); }
 .btn--outline { border-color: rgba(26, 33, 41, 0.3); color: var(--text); background: transparent; }
 .btn--outline:hover { border-color: var(--text); }
+.btn--wa { background: var(--wa); color: var(--ink); }
+.btn--wa:hover { background: #3be07a; }
 
 .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
@@ -448,18 +450,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   display: flex; flex-direction: column;
 }
 .contact-info .lead { margin-top: 18px; }
-.wa-card {
-  margin-top: 32px; display: flex; align-items: center; gap: 16px; padding: 18px 20px;
-  background: var(--slate); border: 1px solid var(--line-dark); border-radius: var(--radius);
-  transition: border-color .2s var(--ease), background-color .2s var(--ease);
-}
-.wa-card:hover { border-color: var(--wa); background: #2a3541; }
-.wa-card-ico { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--wa); color: var(--white); flex: none; }
-.wa-card-ico svg { width: 26px; height: 26px; }
-.wa-card-txt { flex: 1; display: grid; }
-.wa-card-k { font-size: 0.9rem; color: var(--steel-2); }
-.wa-card-v { font-family: var(--f-display); font-weight: 700; font-size: 1.5rem; letter-spacing: 0.03em; }
-.wa-card > .lucide { color: var(--steel-2); }
+.contact-wa { margin-top: 32px; align-self: flex-start; }
 .contact-list { margin-top: auto; padding-top: 32px; display: grid; gap: 14px; }
 .contact-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--fog); }
 .contact-list .lucide { margin-top: 3px; color: var(--gold-hi); }
@@ -559,7 +550,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .nav-toggle { display: flex; }
   .nav {
     position: fixed; inset: var(--hdr-h) 0 auto 0; flex-direction: column; align-items: stretch; gap: 0;
-    padding: 8px var(--gutter) 24px; background: rgba(13, 17, 23, 0.98); border-bottom: 1px solid var(--line-dark);
+    padding: 8px var(--gutter) 24px; background: var(--ink); border-bottom: 1px solid var(--line-dark);
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.45);
     transform: translateY(-8px); opacity: 0; visibility: hidden;
     transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
   }
@@ -567,7 +559,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .nav > a:not(.btn) { padding: 16px 0; border-bottom: 1px solid var(--line-dark); font-size: 1.1rem; }
   .nav > a:not(.btn)::after { display: none; }
   .nav-cta { margin-top: 20px; min-height: 52px; }
-  .hdr.menu-open { background: rgba(13, 17, 23, 0.98); }
+  .hdr.menu-open { background: var(--ink); }
 
   .hero-inner { grid-template-columns: 1fr; }
   .hero-media { max-width: 640px; }
@@ -617,6 +609,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .mosaic .mosaic-main { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
   .norm { grid-template-columns: 1fr; }
   .callout { grid-template-columns: 1fr; padding: 24px; }
-  .wa-card-v { font-size: 1.3rem; }
+  .contact-wa { align-self: stretch; }
   .wa-float { width: 54px; height: 54px; right: 16px; bottom: 16px; }
 }
