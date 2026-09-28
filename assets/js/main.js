@@ -10,7 +10,7 @@
   var WA_MSG = {
     general:  'Hola Zeus Mining, quiero información sobre sus servicios.',
     arriendo: 'Hola Zeus Mining, quiero cotizar el arriendo de equipos vulcanizadores.',
-    kits:     'Hola Zeus Mining, quiero cotizar kits de empalme / polímeros.',
+    kits:     'Hola Zeus Mining, quiero cotizar kits de empalme y polímeros.',
     aseo:     'Hola Zeus Mining, quiero información sobre el servicio de aseo industrial.',
     equipo:   'Hola Zeus Mining, quiero cotizar el arriendo de: '
   };
@@ -152,7 +152,7 @@
     if (d.email) lines.push('Correo: ' + d.email);
     if (d.telefono) lines.push('Teléfono: ' + d.telefono);
     lines.push('Servicio: ' + d.servicioLabel);
-    if (d.faena) lines.push('Faena / ubicación: ' + d.faena);
+    if (d.faena) lines.push('Faena o ubicación: ' + d.faena);
     lines.push('', 'Mensaje:', d.mensaje);
     return lines.join('\n');
   }
